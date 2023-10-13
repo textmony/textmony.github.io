@@ -166,3 +166,16 @@ jQuery(document).ready(function( $ ) {
   google.maps.event.addDomListener(window, 'load', initialize_google_map);
 
 });
+function languageInitialization() {
+  var htmlTag = document.documentElement;
+  var language = htmlTag.getAttribute("lang");
+  var textElements = document.getElementsByClassName("language-text");
+  for (var j = 0; j < textElements.length; j++) {
+    var textElement = textElements[j];
+    if (textElement.getAttribute("data-language") === language) {
+      textElement.hidden = false;
+    } else {
+      textElement.hidden = true;
+    }
+  }
+};

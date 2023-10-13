@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Textmony makes fun ideas happen</title>
@@ -12,7 +13,9 @@
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+    rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +31,29 @@
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
+  <script>
+    function toggleLanguage() {
+      // Replace English and Chinese text accordingly
+      var htmlTag = document.documentElement;
+      var language = htmlTag.getAttribute("lang");
+
+      var textElements = document.getElementsByClassName("language-text");
+      for (var j = 0; j < textElements.length; j++) {
+        var textElement = textElements[j];
+        if (textElement.getAttribute("data-language") === language) {
+          textElement.hidden = true;
+        } else {
+          textElement.hidden = false;
+        }
+      }
+      if (language === "en") {
+        htmlTag.setAttribute("lang", "zh");
+      } else {
+        htmlTag.setAttribute("lang", "en");
+      }
+    };
+  </script>
+
   <!-- =======================================================
     Theme Name: Reveal
     Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
@@ -36,7 +62,7 @@
   ======================================================= -->
 </head>
 
-<body id="body">
+<body id="body" onload="languageInitialization();">
 
   <!--==========================
     Top Bar
@@ -48,10 +74,11 @@
         <!--i class="fa fa-phone"></i> +1 5589 55488 55-->
       </div>
       <div class="social-links float-right">
-         <a href="https://twitter.com/textmony" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="https://twitter.com/textmony" class="twitter"><i class="fa fa-twitter"></i></a>
         <!--<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
         <a href="#" class="instagram"><i class="fa fa-instagram"></i></a> -->
         <!-- <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a> -->
+        <button onclick="toggleLanguage()" class="language-switch"><i class="fa fa-language"></i></button>
       </div>
     </div>
   </section>
@@ -70,9 +97,19 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#body">Home</a></li>
-          <li><a href="./privacy_policy.html">Privacy Policy</a></li>
-          <!-- <li><a href="#about">About Us</a></li>
+          <li class="menu-active">
+            <a href="#body">
+              <text class="language-text" data-language="en">Home</text>
+              <text class="language-text" data-language="zh" hidden>主页</text>
+            </a>
+          </li>
+          <li>
+            <a href="./privacy_policy.html">
+              <text class="language-text" data-language="en">Privacy Policy</text>
+              <text class="language-text" data-language="zh" hidden>隐私政策</text>
+            </a>
+          </li>
+          <!-- 
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#team">Team</a></li> -->
@@ -84,7 +121,18 @@
               <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li> -->
-          <li><a href="mailto:textmony@outlook.com">Contact</a></li>
+          <li>
+            <a href="mailto:textmony@outlook.com">
+              <text class="language-text" data-language="en">Contact</text>
+              <text class="language-text" data-language="zh" hidden>联系</text>
+            </a>
+          </li>
+          <li>
+            <a href="#about">
+              <text class="language-text" data-language="en">About</text>
+              <text class="language-text" data-language="zh" hidden>关于</text>
+            </a>
+          </li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -94,16 +142,16 @@
     Intro Section
   ============================-->
   <section id="intro">
-
     <div class="intro-content">
-      <h2>Making <span>fun ideas</span><br>happen!</h2>
+      <h2 class="language-text" data-language="en">Making <span>fun ideas</span> happen!</h2>
+      <h2 class="language-text" data-language="zh" hidden>让 <span>创意</span> 成真！</h2>
       <div>
         <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
         <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
       </div>
     </div>
 
-    <div id="intro-carousel" class="owl-carousel" >
+    <div id="intro-carousel" class="owl-carousel">
       <div class="item" style="background-image: url('img/intro-carousel/1.jpg');"></div>
       <div class="item" style="background-image: url('img/intro-carousel/2.jpg');"></div>
       <div class="item" style="background-image: url('img/intro-carousel/3.jpg');"></div>
@@ -114,33 +162,6 @@
   </section><!-- #intro -->
 
   <main id="main">
-
-    <!--==========================
-      About Section
-    ============================-->
-    <!-- <section id="about" class="wow fadeInUp">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 about-img">
-            <img src="img/about-img.jpg" alt="">
-          </div>
-
-          <div class="col-lg-6 content">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-            <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
-
-            <ul>
-              <li><i class="ion-android-checkmark-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="ion-android-checkmark-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="ion-android-checkmark-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-
-          </div>
-        </div>
-
-      </div>
-    </section> -->
-    <!-- #about -->
 
     <!--==========================
       Services Section
@@ -223,8 +244,17 @@
     <section id="portfolio" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
-          <h2>To Do Focus</h2> [<a href="https://apps.apple.com/us/app/to-do-focus/id6464369833"> Download for iOS </a>]
-          <p>To Do Focus is a simple app to manage your to-dos. In addition to text, you can add images to describe the task. It also provides an event alarm function to remind you about the to-do, and also a focus timer function to help you concenrate on your task.</p>
+          <div class="language-text" data-language="en">
+            <h2>To Do Focus</h2> [<a href="https://apps.apple.com/us/app/to-do-focus/id6464369833"> Download for iOS
+            </a>]
+            <p>To Do Focus is a simple app to manage your to-dos. In addition to text, you can add images to describe
+              the task. It also provides an event alarm function to remind you about the to-do, and also a focus timer
+              function to help you concenrate on your task.</p>
+          </div>
+          <div class="language-text" data-language="zh" hidden>
+            <h2>To Do Focus</h2> [<a href="https://apps.apple.com/cn/app/to-do-focus/id6464369833"> 下载苹果应用 </a>]
+            <p>To Do Focus 是一款用于管理待办事项的简单应用程序。 除了文本之外，您还可以添加图像来描述任务。 它还提供事件闹铃功能来提醒您待办事项，以及专注计时器功能来帮助您专注于任务。</p>
+          </div>
         </div>
       </div>
 
@@ -232,35 +262,35 @@
         <div class="row no-gutters">
           <div class="col-lg-3 col-md-4">
             <div class="portfolio-item wow fadeInUp">
-              <a href="img/todofocus/1.png" class="portfolio-popup">
-                <img src="img/todofocus/1.png" alt="">
+              <a href="img/todofocus/1.jpg" class="portfolio-popup">
+                <img src="img/todofocus/1.jpg" alt="">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="portfolio-item wow fadeInUp">
-              <a href="img/todofocus/2.png" class="portfolio-popup">
-                <img src="img/todofocus/2.png" alt="">
-              </a>
-            </div>
-          </div>         
-
-          <div class="col-lg-3 col-md-4">
-            <div class="portfolio-item wow fadeInUp">
-              <a href="img/todofocus/3.png" class="portfolio-popup">
-                <img src="img/todofocus/3.png" alt="">
+              <a href="img/todofocus/2.jpg" class="portfolio-popup">
+                <img src="img/todofocus/2.jpg" alt="">
               </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="portfolio-item wow fadeInUp">
-              <a href="img/todofocus/4.png" class="portfolio-popup">
-                <img src="img/todofocus/4.png" alt="">
+              <a href="img/todofocus/3.jpg" class="portfolio-popup">
+                <img src="img/todofocus/3.jpg" alt="">
               </a>
             </div>
-          </div>          
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="portfolio-item wow fadeInUp">
+              <a href="img/todofocus/4.jpg" class="portfolio-popup">
+                <img src="img/todofocus/4.jpg" alt="">
+              </a>
+            </div>
+          </div>
           <!-- <div class="col-lg-3 col-md-4">
             <div class="portfolio-item wow fadeInUp">
               <a href="img/portfolio/1.jpg" class="portfolio-popup">
@@ -595,6 +625,53 @@
     </section> -->
     <!-- #contact -->
 
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about" class="wow fadeInUp">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 about-img">
+            <div class="image-container">
+              <img src="img/about-img.jpg" alt="Engineer Avatar Image">
+              <div class="image-text">AI generated image by rawpixel.com</div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 content">
+            <h2>Text<span style="color:#50d8af">mony</span></h2>
+            <h3>
+              <text class="language-text" data-language="en">is a personal studio with goals to</text>
+              <text class="language-text" data-language="zh" hidden>是一家个人工作室，其目标是</text>
+            </h3>
+
+            <ul>
+              <li>
+                <i class="ion-android-add-circle"></i>
+                <text class="language-text" data-language="en"> practice the latest technologies</text>
+                <text class="language-text" data-language="zh" hidden> 实践最新的技术</text>
+              </li>
+              <li>
+                <i class="ion-android-add-circle"></i>
+                <text class="language-text" data-language="en"> turn fun ideas into reality</text>
+                <text class="language-text" data-language="zh" hidden> 把有趣的想法变成现实</text>
+              </li>
+              <li>
+                <i class="ion-android-add-circle"></i>
+                <text class="language-text" data-language="en"> design and develop experience that make lives
+                  simple</text>
+                <text class="language-text" data-language="zh" hidden> 设计和开发让生活变得简单的体验</text>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- #about -->
+
   </main>
 
   <!--==========================
@@ -636,6 +713,28 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+  <style>
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
 
+    .image-container:hover .image-text {
+      display: block;
+    }
+
+    .image-text {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 5px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
 </body>
+
 </html>
