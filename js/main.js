@@ -179,3 +179,23 @@ function languageInitialization() {
     }
   }
 };
+function toggleLanguage() {
+  // Replace English and Chinese text accordingly
+  var htmlTag = document.documentElement;
+  var language = htmlTag.getAttribute("lang");
+
+  var textElements = document.getElementsByClassName("language-text");
+  for (var j = 0; j < textElements.length; j++) {
+    var textElement = textElements[j];
+    if (textElement.getAttribute("data-language") === language) {
+      textElement.hidden = true;
+    } else {
+      textElement.hidden = false;
+    }
+  }
+  if (language === "en") {
+    htmlTag.setAttribute("lang", "zh");
+  } else {
+    htmlTag.setAttribute("lang", "en");
+  }
+};
