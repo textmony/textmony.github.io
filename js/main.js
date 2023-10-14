@@ -167,8 +167,16 @@ jQuery(document).ready(function( $ ) {
 
 });
 function languageInitialization() {
+  var supportLanguage = {"en": true, "zh": true};
   var htmlTag = document.documentElement;
   var language = htmlTag.getAttribute("lang");
+  const queryString = window.location.href;
+  const url = new URL(queryString);
+  if (url.searchParams.has('lang') && url.searchParams.get('lang') in supportLanguage) {
+    language =  url.searchParams.get('lang');
+    htmlTag.setAttribute("lang", language);
+    addLangToUrl(language);
+  }
   var textElements = document.getElementsByClassName("language-text");
   for (var j = 0; j < textElements.length; j++) {
     var textElement = textElements[j];
@@ -177,13 +185,18 @@ function languageInitialization() {
     } else {
       textElement.hidden = true;
     }
+  }
+  if (url.hash === "#about") {
+    document.getElementById("li-home").classList.remove("menu-active"); 
+    document.getElementById("li-about").classList.add("menu-active"); 
   }
 };
 function toggleLanguage() {
   // Replace English and Chinese text accordingly
   var htmlTag = document.documentElement;
   var language = htmlTag.getAttribute("lang");
-
+  const queryString = window.location.href;
+  const url = new URL(queryString);
   var textElements = document.getElementsByClassName("language-text");
   for (var j = 0; j < textElements.length; j++) {
     var textElement = textElements[j];
@@ -193,16 +206,19 @@ function toggleLanguage() {
       textElement.hidden = false;
     }
   }
-  if (language === "en") {
-    htmlTag.setAttribute("lang", "zh");
-  } else {
-    htmlTag.setAttribute("lang", "en");
-  }
+  const newLanguage = language === "en" ? "zh" : "en";
+  htmlTag.setAttribute("lang", newLanguage);
+  addLangToUrl(newLanguage);
+  url.searchParams.set("lang", newLanguage);
+  // Replace the url of the current page
+  window.history.replaceState(window.history.state, document.title, url.toString());
 };
 function addLangToUrl(lang) {
   var linkElements = document.getElementsByClassName("language-link");
   for (var j = 0; j < linkElements.length; j++) {
     var linkElement = linkElements[j];
-    linkElement.setAttribute("href", linkElement.href + "?lang=" + lang)
+    const elementUrl = new URL(linkElement.href);
+    elementUrl.searchParams.set("lang", lang);
+    linkElement.setAttribute("href", elementUrl.toString());
   }
-}
+};
