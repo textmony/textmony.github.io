@@ -1113,6 +1113,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   left: 5%;
 }
 #wechat-tip button {
+  padding: 0px;
   border-radius: 50%;
   border: 2px solid white;
 }
