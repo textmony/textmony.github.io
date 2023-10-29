@@ -222,3 +222,18 @@ function addLangToUrl(lang) {
     linkElement.setAttribute("href", elementUrl.toString());
   }
 };
+
+// Wechat tips
+var isWechat = (function() {
+  return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+})();
+var closeButton = document.getElementById('close');
+var weChatTip = document.getElementById('wechat-tip');
+var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; 			
+if(isWechat) {				
+  weChatTip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+  weChatTip.style.display = 'block';	
+}
+closeButton.onclick = function() {
+  weChatTip.style.display = 'none';
+}
